@@ -17,8 +17,11 @@ function App() {
         path="/Register"
         element={
           <Layout>
+            <div className="RegisterPage">
             <Card/>
             <Register/>
+            </div>
+
           </Layout>
         }
         />

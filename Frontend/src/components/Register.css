@@ -1,40 +1,40 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
+body {
+  background-color: #1e1e1e;
+  color: #ccc;
+  font-family: 'Roboto', sans-serif;
+}
 
-
-.Register {
+.RegisterPage {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
 
+.Register {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 20px;
+}
+
 .RLcard {
-  background-color: #fff;
+  background-color: #2a2a2a;
   padding: 30px;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   text-align: center;
+  color: #ccc;
 }
 
-.RLcard h1 {
-  font-size: 24px;
-  font-weight: 700;
-  color: #333;
-  margin-bottom: 20px;
-}
-
-.RLcard h3 {
-  font-size: 16px;
-  font-weight: 400;
-  color: #666;
-  margin-bottom: 20px;
+.RLcard h1, .RLcard h3, .labels {
+  color: #ccc;
 }
 
 .RLcard h3 a {
   color: #007bff;
-  text-decoration: none;
 }
 
 .RLcard h3 a:hover {
@@ -68,19 +68,16 @@
   display: block;
   margin-bottom: 5px;
   font-size: 14px;
-  color: #333;
-}
-
-.input-container {
-  position: relative;
 }
 
 .inputel {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #555;
   border-radius: 5px;
   font-size: 14px;
+  background-color: #3a3a3a;
+  color: #ccc;
   box-sizing: border-box;
 }
 
@@ -126,4 +123,3 @@
   font-weight: bold;
   cursor: pointer;
 }
-

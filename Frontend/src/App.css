@@ -1,0 +1,20 @@
+.RegisterPage {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    padding: 0 50px;
+    background-color: #1e1e1e;
+  }
+  
+  @media (max-width: 768px) {
+    .RegisterPage {
+      flex-direction: column;
+    }
+  
+    .card, .Register {
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
+  }
+  

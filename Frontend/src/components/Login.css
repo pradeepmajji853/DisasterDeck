@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.Register {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  height: 100vh;
+  margin-right: 250px;
+}
+
+.RLcard {
+  background-color: #1c1c1c; /* Dark theme background */
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.RLcard h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff; /* White text */
+  margin-bottom: 20px;
+}
+
+.RLcard h3 {
+  font-size: 16px;
+  font-weight: 400;
+  color: #b3b3b3; /* Lighter text for subheading */
+  margin-bottom: 20px;
+}
+
+.RLcard h3 a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.RLcard h3 a:hover {
+  text-decoration: underline;
+}
+
+.registerform {
+  list-style-type: none;
+  padding: 0;
+}
+
+.registerform li {
+  margin-bottom: 15px;
+}
+
+.labels {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #fff; /* White text for labels */
+}
+
+.inputel {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  background-color: #333; /* Dark input background */
+  color: #fff; /* White input text */
+}
+
+.inputel.error-border {
+  border-color: red;
+}
+
+.inputSub {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.inputSub:disabled {
+  background-color: #ccc;
+}
+
+.inputSub:hover:enabled {
+  background-color: #0056b3;
+}
+
+.error-text {
+  color: red;
+  font-size: 12px;
+}
+
+.success-text {
+  color: green;
+  font-size: 12px;
+}
+
+.error-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: red;
+  font-weight: bold;
+  cursor: pointer;
+}
+

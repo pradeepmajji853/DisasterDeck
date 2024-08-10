@@ -29,8 +29,10 @@ function App() {
         path="/Login"
         element={
           <Layout>
+            <div className="LoginPage">
             <Card/>
             <Login/>
+            </div>
           </Layout>
         }
         />

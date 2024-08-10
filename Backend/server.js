@@ -119,10 +119,10 @@ app.get('/api/disaster-alerts', async (req, res) => {
   try {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
-    await page.goto('https://disasteralert.pdc.org/disasteralert/');
+    await page.goto('https://sachet.ndma.gov.in/');
     
     const alerts = await page.evaluate(() => {
-      const headings = Array.from(document.querySelectorAll('h3'));
+      const headings = Array.from(document.querySelectorAll('#style-1'));
       return headings.map(heading => heading.textContent.trim());
     });
     

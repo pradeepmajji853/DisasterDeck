@@ -17,26 +17,35 @@ export default function Navbar() {
         </li>
         <li>
           <NavLink 
-            to="/resources" 
+            to="/Emergency" 
             className={({ isActive }) => (isActive ? "active" : "")}
           >
-            Resources
+            Emergency
           </NavLink>
         </li>
         <li>
           <NavLink 
-            to="/community-forum" 
+            to="/KnowledgeHub" 
             className={({ isActive }) => (isActive ? "active" : "")}
           >
-            Community Forum
+            KnowledgeHub
           </NavLink>
         </li>
+        
         <li>
           <NavLink 
             to="/preparedness-checklist" 
             className={({ isActive }) => (isActive ? "active" : "")}
           >
             Preparedness Checklist
+          </NavLink>
+        </li>
+        <li>
+          <NavLink 
+            to="/Dos" 
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            Do's and Dont's
           </NavLink>
         </li>
       </ul>

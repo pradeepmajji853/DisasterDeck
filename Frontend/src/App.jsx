@@ -3,13 +3,14 @@ import Card from "./components/Card.jsx"
 import Layout from "./Layouts/Layout.jsx";
 import Layout2 from './Layouts/Layout2.jsx';
 import HomePage from './components/HomePage.jsx';
-import Resources from "./components/Resources.jsx"
+import KnowledgeHub from "./components/KnowledgeHub.jsx"
 import PreparednessChecklist from './components/PreparednessChecklist.jsx';
-import CommunityForum from './components/CommunityForum.jsx';
+import Emergency from './components/Emergency.jsx';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Register from './components/Register.jsx';
 import Login from "./components/Login.jsx"
 import RecentDisasters from './components/RecentDisasters.jsx';
+import Dos from './components/Dos.jsx';
 import './App.css'
 
 function App() {
@@ -55,31 +56,42 @@ function App() {
         }
         />
          <Route
-        path="/Resources"
+        path="/Emergency"
         element={
           <Layout2>
             <div>
-            <Resources/>
+              <Emergency/>
             </div>
           </Layout2>
         }
         />
          <Route
-        path="/community-forum"
+        path="/KnowledgeHub"
         element={
           <Layout2>
             <div>
-              <CommunityForum/>
+            <KnowledgeHub/>
             </div>
           </Layout2>
         }
         />
+        
          <Route
         path="/preparedness-checklist"
         element={
           <Layout2>
             <div>
               <PreparednessChecklist/>
+            </div>
+          </Layout2>
+        }
+        />
+        <Route
+        path="/Dos"
+        element={
+          <Layout2>
+            <div>
+            <Dos/>
             </div>
           </Layout2>
         }

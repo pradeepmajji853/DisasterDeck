@@ -1,104 +1,129 @@
 .container {
-  overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  }
-  
-  .button-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  .alert-button {
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    padding: 10px 20px;
-    margin: 0 10px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .alert-button:hover {
-    background-color: #ddd;
-  }
-  
-  .content {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-  }
-  
-  .map-container {
-    flex: 2;
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-right: 10px;
-  }
-  
-  .map-image {
-    width: 100%;
-    height: auto;
-  }
-  
-  .alert-list {
-    flex: 1;
-    border: 1px solid #ccc;
-    padding: 10px;
-    background-color: #f9f9f9;
-    margin-right: 10px;
-  }
-  
-  .alert-item {
-    background-color: #ffcc00;
-    padding: 10px;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-  
-  .weather-card {
-    flex: 1;
-    border: 1px solid #ccc;
-    padding: 15px;
-    background-color: #f0f8ff;
-    text-align: left;
-  }
-  
-  .weather-header {
-    text-align: center;
-    margin-bottom: 15px;
-  }
-  
-  .weather-header h2 {
-    margin: 0;
-    font-size: 24px;
-  }
-  
-  .weather-header p {
-    margin: 5px 0;
-    font-size: 16px;
-  }
-  
-  .weather-header h3 {
-    margin: 5px 0;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
-  .weather-forecast, .daily-forecast {
-    margin-top: 10px;
-  }
-  
-  .weather-forecast h4, .daily-forecast h4 {
-    margin: 0 0 10px 0;
-    font-size: 18px;
-  }
-  
-  .weather-forecast p, .daily-forecast p {
-    margin: 5px 0;
-    font-size: 14px;
-  }
-  
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden; /* Disable horizontal scroll */
+}
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+  width: 70%; /* Adjust the width as needed */
+  margin-right: 20px; /* Add space between content and weather */
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.alert-button {
+  background-color: #007BFF;
+  border: none;
+  padding: 15px 30px;
+  margin: 0 5px;
+  font-size: 18px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  flex: 1;
+  text-align: center;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.alert-button:hover {
+  background-color: #0056b3;
+}
+
+.alert-button i {
+  margin-right: 10px;
+  font-size: 22px;
+}
+
+.content {
+  display: flex;
+  width: 100%;
+  border: 2px solid #ccc; /* Border around both map and alerts box */
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.map-container {
+  flex: 2;
+  border-right: 1px solid #ccc; /* Border between map and alerts box */
+  padding: 10px;
+}
+
+.alert-list {
+  flex: 1;
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+
+.alert-item {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.weather-card {
+  padding: 20px;
+  flex: 1;
+  border: 2px solid #007BFF;
+  text-align: center;
+  background-color: #f8f9fa;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  width: 30%; /* Adjust the width as needed */
+  box-sizing: border-box;
+}
+
+.weather-header {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.weather-header h2 {
+  margin: 0;
+  font-size: 26px;
+  color: #007BFF;
+}
+
+.weather-header p {
+  margin: 5px 0;
+  font-size: 18px;
+  color: #555;
+}
+
+.weather-header h3 {
+  margin: 5px 0;
+  font-size: 30px;
+  font-weight: bold;
+  color: #343a40;
+}
+
+.weather-forecast, .daily-forecast {
+  margin-top: 10px;
+  text-align: left;
+}
+
+.weather-forecast h4, .daily-forecast h4 {
+  margin: 0 0 10px 0;
+  font-size: 20px;
+  color: #007BFF;
+}
+
+.weather-forecast p, .daily-forecast p {
+  margin: 5px 0;
+  font-size: 16px;
+  color: #555;
+}

@@ -1,0 +1,81 @@
+.disaster-info {
+    font-family: Arial, sans-serif;
+    background-image: url('https://img.freepik.com/premium-photo/neon-red-color-question-mark-black-background-neon-question-mark-question-mark-symbol-question-mark-sign-neon-question-mark-sign_920779-765.jpg');
+    background-size: cover;
+    background-position: center;
+    min-height:100vh;
+    display: flex;
+    grid-template-columns: repeat(3, 1fr) 1fr; /* Create 4 columns */
+
+}
+.header h1{
+    background: linear-gradient(90deg, #4d4c4b, green); /* Adjust colors as needed */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  }
+  
+  .topics {
+    margin-bottom: 20px;
+    display: flex;
+    grid-template-columns: repeat(2, 1fr) 1fr;
+    gap:50px;
+ 
+}
+  
+  .topic-button {
+    background-color:green;
+    color:black;
+    font-weight: bold;
+    border: none;
+    padding: 40px 40px;
+    margin: 5px;
+    margin-right:1rem;
+    margin-top:15rem;
+    cursor: pointer;
+    font-size: 16px;
+    height:250px;
+    border-radius: 5px;
+    width: 10rem;
+  }
+  
+  .topic-button:hover {
+    background-color: #310702;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .info-box {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    color: whitesmoke;
+    height: 28rem;
+    background-color: rgb(51, 47, 47);
+  }
+  
+  .dos-donts {
+    display: flex;
+    justify-content: space-between;
+    color: whitesmoke;
+    font-size: 1.2rem;
+    background-color: rgb(51, 47, 47);
+  }
+  
+  .dos, .donts {
+    width: 45%;
+  }
+  
+  .dos h3, .donts h3 {
+    color: #333;
+  }
+  
+  .dos ul, .donts ul {
+    list-style-type: disc;
+    margin-left: 20px;
+  }
+  
+  .dos li, .donts li {
+    margin-bottom: 10px;
+  }

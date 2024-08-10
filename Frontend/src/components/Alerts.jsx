@@ -10,12 +10,16 @@ const Alerts = () => {
   useEffect(() => {
     const fetchAlerts = async () => {
       try {
+        console.log("Fetching disaster alerts...");
         const response = await axios.get('http://localhost:3000/api/disaster-alerts');
+        console.log("Alerts fetched:", response.data);
         setAlerts(response.data);
       } catch (err) {
+        console.error("Error fetching alerts:", err);
         setError('Failed to fetch disaster alerts');
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     };
 
     fetchAlerts();
@@ -28,9 +32,13 @@ const Alerts = () => {
       {error && <p>{error}</p>}
       <div className="alerts">
         {alerts.length > 0 ? (
-          alerts.map((alert, index) => <div key={index} className="alert-item">{alert}</div>)
+          alerts.map((alert, index) => (
+            <div key={index} className="alert-item">
+              {alert}
+            </div>
+          ))
         ) : (
-          <p>No alerts available</p>
+          !loading && <p>No alerts available</p>
         )}
       </div>
     </div>

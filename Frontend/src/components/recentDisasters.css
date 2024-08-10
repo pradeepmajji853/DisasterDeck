@@ -1,13 +1,13 @@
 .recent-disasters {
   padding: 20px;
-  border: 1px solid #ccc;
-  background-color: #f9f9f9;
+  background-color:#393e46;
+  overflow-x: hidden;
 }
 
 .title {
   font-size: 1.5em;
   margin-bottom: 10px;
-  background-color: #0056a3;
+  background-color:#132743;
   color: white;
   padding: 10px;
   display: flex;

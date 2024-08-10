@@ -20,7 +20,7 @@ function App() {
     <Router>
       <Routes>
         <Route
-        path="/Register"
+        path="/"
         element={
           <Layout>
             <div className="RegisterPage">

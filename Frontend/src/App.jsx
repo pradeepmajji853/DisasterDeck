@@ -1,4 +1,9 @@
 import { useState } from 'react'
+import Card from "./components/Card.jsx"
+import Layout from "./Layouts/Layout.jsx";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Register from './components/Register.jsx';
+import Login from "./components/Login.jsx"
 import './App.css'
 
 function App() {
@@ -6,6 +11,29 @@ function App() {
 
   return (
     <>
+    <Router>
+      <Routes>
+        <Route
+        path="/Register"
+        element={
+          <Layout>
+            <Card/>
+            <Register/>
+          </Layout>
+        }
+        />
+        <Route
+        path="/Login"
+        element={
+          <Layout>
+            <Card/>
+            <Login/>
+          </Layout>
+        }
+        />
+      </Routes>
+    </Router>
+    
     
     </>
   )

@@ -1,42 +1,145 @@
 .blogs{
     
-    justify-content: space-between; 
-    gap: 20px; 
-    padding: 20px;
-    background-image: url('C:\Users\DELL\d3\DisasterDeck\Frontend\src\assets\n.jpg')
+  justify-content: space-between; 
+  gap: 20px; 
+  padding: 20px;
+ 
 
-  }
-  
-  .blogs .but {
-    flex: 1; /* Ensures all cards are the same width */
-    background-color: #a7bbcf; /* Background color for the card */
-    border: 1px solid #ddd; /* Border around each card */
-    border-radius: 8px; /* Rounded corners */
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow */
-    text-align: center;
-    color:black;
-    font-weight: bold;
-    width:40rem;
-    cursor: pointer;
-    margin-bottom: 25px;
-    margin-left: 20rem;
-    height:8rem;
-  }
-  
-  .blogs .but:hover {
-    background-color: #344c66; /* Background color on hover */
-    color: white; /* Text color on hover */
-    font-weight: bold;
-    transform: scale(1.05); /* Slightly enlarges the button on hover */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
-  }
-  .blogs h1{
-    font-family: 'Times New Roman', Times, serif;
-    font-weight: bold;
-    justify-content: center;
-    align-items: center;
-    margin-left: 35rem;
-    
+}
+.blogs h1{
+  font-size:40px;
+  margin-left: 5rem;
 
-  }
+}
+
+.blogs .but {
+  flex: 1; /* Ensures all cards are the same width */
+  display: grid;
+  background-color: white; /* Background color for the card */
+  border: 1px solid #ddd; /* Border around each card */
+  border-radius: 8px; /* Rounded corners */
+  padding: 20px;
+  box-shadow: 0 2px 4px white; /* Optional: adds a subtle shadow */
+  text-align: center;
+  color:black;
+  font-weight: bold;
+  width:20rem;
+  cursor: pointer;
+  margin-bottom: 25px;
+  margin-left: 10rem;
+  height:8rem;
+
+  border: 1px solid #ddd; /* Border around each card */
+  border-radius: 8px; /* Rounded corners */
+  padding: 20px;
+  text-align: center;
+}
+.blogs .but h3{
+  margin-bottom:1px ;
+  margin-top: 2px;
+  font-size: 1rem;
+  font-weight: bold; /* Optional: makes text bold */
+  background: linear-gradient(90deg, #ff007f, #7f00ff, #00ffff); /* Three colors gradient */
+  -webkit-background-clip: text; /* Clips the background to the text */
+  -webkit-text-fill-color: transparent; /* Makes text color transparent to show the gradient */
+  background-clip: text
+}
+
+
+.blogs .but:hover {
+  background-color: #bfc4c9; /* Background color on hover */
+  color: white; /* Text color on hover */
+  font-weight: bold;
+  transform: scale(1.05); /* Slightly enlarges the button on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+}
+.blogs h1{
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  margin-left: 35rem;
+}
+.blogs .blogposts{
+  
+  display: grid;
+  grid-template-columns: repeat(2, 5fr); /* Creates three equal columns */
+  
+}
+
+.Utube h1{
+  color:white;
+  margin-left: 25rem;
+  margin-top:2px;
+}
+.Utube .videos{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Creates 3 equal columns */
+  grid-template-rows: repeat(2, auto); /* Creates 2 rows */
+  gap: 20px; /* Adjust spacing between items as needed */
+  margin-top: 20px;
+}
+.Utube .video-card {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Creates 3 equal columns */
+  grid-template-rows: repeat(2, auto); 
+  gap: 20px;
+  padding: 20px;
+  justify-items: center;
+  border:black solid;
+  border-radius: 8px;
+}
+.Utube .video-card h3{
+  color: white;
+}
+
+.Utube .video-card {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Creates 3 equal columns */
+  grid-template-rows: repeat(2, auto); 
+  gap: 20px;
+  padding: 20px;
+  justify-items: center;
+  border:black solid;
+  border-radius: 8px;
+}
+.Utube .video-card:hover {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Creates 3 equal columns */
+  grid-template-rows: repeat(2, auto); 
+  gap: 20px;
+  padding: 20px;
+  justify-items: center;
+  border:black solid;
+  border-radius: 8px;
+  background-color: #333;
+}
+
+  
+
+
+.Utube .video-container:hover {
+  transform: scale(1.05);
+}
+
+.Utube .video-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+}
+
+.Utube .video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.Utube .video-title {
+  padding: 10px;
+  font-size: 16px;
+  color: #333;
+  text-align: center;
+}

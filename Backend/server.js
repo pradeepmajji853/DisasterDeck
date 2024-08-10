@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
+const puppeteer = require('puppeteer');
+const mysql = require("mysql2");
 const bcrypt = require("bcrypt");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
@@ -8,97 +9,130 @@ const app = express();
 const port = 3000;
 const saltRounds = 10;
 const secretKey = 'Pradeep@00';
+const moment = require('moment');
 
-mongoose.connect('mongodb+srv://rimdaas30:b4a7a%2F8YNR%2E%2AW%25_@deck1.zuyqd.mongodb.net/deck1?retryWrites=true&w=majority')
-  .then(() => console.log("Connected to MongoDB Atlas"))
-  .catch(err => console.error("Error connecting to MongoDB Atlas:", err));
-
-
-const userSchema = new mongoose.Schema({
-  firstName: String,
-  lastName: String,
-  email: { type: String, unique: true },
-  password: String,
+const db = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "Pradeep@00",
+  database: "DisasterDeck",
 });
 
-const User = mongoose.model('User', userSchema);
+db.connect((err) => {
+  if (err) {
+    console.error("Error connecting to the database:", err);
+    return;
+  }
+  console.log("Connected to the MySQL database.");
+});
 
 app.use(bodyParser.json());
 app.use(cors());
 
-app.post("/register", async (req, res) => {
+app.post("/register", (req, res) => {
   const { firstName, lastName, email, password } = req.body;
 
   if (!firstName || !lastName || !email || !password) {
     return res.status(400).send("All fields are required");
   }
 
-  try {
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      return res.status(400).send("Email already exists");
+  bcrypt.hash(password, saltRounds, (err, hashedPassword) => {
+    if (err) {
+      console.error("Error hashing password:", err);
+      return res.status(500).send("An error occurred while hashing the password");
     }
 
-    const hashedPassword = await bcrypt.hash(password, saltRounds);
+    const query = `INSERT INTO users (first_name, last_name, email, password) VALUES (?, ?, ?, ?)`;
 
-    const newUser = new User({
-      firstName,
-      lastName,
-      email,
-      password: hashedPassword,
+    db.query(query, [firstName, lastName, email, hashedPassword], (err, results) => {
+      if (err) {
+        if (err.code === 'ER_DUP_ENTRY') {
+          console.error("Duplicate entry:", err);
+          return res.status(400).send("Email already registered");
+        }
+        console.error("Error inserting data into the database:", err);
+        return res.status(500).send("An error occurred while inserting data into the database");
+      }
+
+      const user = { id: results.insertId, firstName, lastName, email };
+      const token = jwt.sign({ userId: user.id }, secretKey, { expiresIn: '1h' });
+
+      res.json({ message: "Registration successful", token, user });
     });
-
-    const user = await newUser.save();
-
-    const token = jwt.sign({ userId: user._id }, secretKey, { expiresIn: '1h' });
-
-    res.json({ message: "Registration successful", token, user });
-  } catch (err) {
-    console.error("Error inserting data into the database:", err);
-    res.status(500).send(`An error occurred while inserting data into the database: ${err.message}`);
-  }
+  });
 });
 
-app.post("/login", async (req, res) => {
+app.post("/login", (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
     return res.status(400).send("Email and password are required");
   }
 
-  try {
-    const user = await User.findOne({ email });
+  const query = `SELECT * FROM users WHERE email = ?`;
 
-    if (!user) {
+  db.query(query, [email], (err, results) => {
+    if (err) {
+      console.error("Error fetching user from database:", err);
+      return res.status(500).send("An error occurred while fetching user from database");
+    }
+
+    if (results.length === 0) {
       return res.status(400).send("Invalid email or password");
     }
 
-    const isMatch = await bcrypt.compare(password, user.password);
+    const user = results[0];
 
-    if (!isMatch) {
-      return res.status(400).send("Invalid email or password");
-    }
+    bcrypt.compare(password, user.password, (err, isMatch) => {
+      if (err) {
+        console.error("Error comparing passwords:", err);
+        return res.status(500).send("An error occurred while comparing passwords");
+      }
 
-    const token = jwt.sign({ userId: user._id }, secretKey, { expiresIn: '1h' });
-    res.json({ token });
-  } catch (err) {
-    console.error("Error fetching user from database:", err);
-    res.status(500).send("An error occurred while fetching user from database");
-  }
+      if (!isMatch) {
+        return res.status(400).send("Invalid email or password");
+      }
+
+      const token = jwt.sign({ userId: user.id }, secretKey, { expiresIn: '1h' });
+      res.json({ token });
+    });
+  });
 });
 
-app.get("/users/:userId", async (req, res) => {
-  try {
-    const user = await User.findById(req.params.userId).select('-password');
-    if (!user) {
+app.get('/users/:userId', (req, res) => {
+  const userId = req.params.userId;
+
+  const query = 'SELECT id, first_name, last_name, email FROM users WHERE id = ?';
+  db.query(query, [userId], (err, results) => {
+    if (err) {
+      console.error("Error fetching user data:", err);
+      return res.status(500).send("An error occurred while fetching user data");
+    }
+    if (results.length === 0) {
       return res.status(404).send("User not found");
     }
-    res.json(user);
-  } catch (err) {
-    console.error("Error fetching user data:", err);
-    res.status(500).send("An error occurred while fetching user data");
+    res.json(results[0]);
+  });
+});
+
+app.get('/api/disaster-alerts', async (req, res) => {
+  try {
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.goto('https://disasteralert.pdc.org/disasteralert/');
+    
+    const alerts = await page.evaluate(() => {
+      const headings = Array.from(document.querySelectorAll('h3'));
+      return headings.map(heading => heading.textContent.trim());
+    });
+    
+    await browser.close();
+    res.json(alerts);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch disaster alerts' });
   }
 });
+
 
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);

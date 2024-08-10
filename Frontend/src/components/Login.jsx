@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
-import {jwtDecode} from 'jwt-decode'; // Corrected import
+import {jwtDecode} from 'jwt-decode'; 
 import "./Login.css";
 
 const Login = () => {
@@ -58,7 +58,7 @@ const Login = () => {
         }
 
         sessionStorage.clear();
-        navigate("/dashboard");
+        navigate("/home");
       } else {
         setError("form", { type: "manual", message: result.message || "Login failed" });
       }
@@ -73,7 +73,7 @@ const Login = () => {
       <div className="RLcard">
         <h1>Login</h1>
         <h3>
-          Don't have an account yet? <Link to="/register">Sign-up!</Link>
+          Don't have an account yet? <Link to="/">Sign-up!</Link>
         </h3>
 
         <form onSubmit={handleSubmit(onSubmit)}>

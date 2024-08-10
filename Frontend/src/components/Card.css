@@ -1,28 +1,36 @@
 .card {
-    background-color: #2a2a2a;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    color: #ccc;
-    flex: 1;
-    margin-right: 20px;
-  }
-  
-  .disaser-ready {
-    font-size: 24px;
-    font-weight: 700;
-    color: #007bff;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .card p {
-    margin: 10px 0;
-  }
-  
-  .card img {
-    max-width: 100%;
-    border-radius: 10px;
-    margin: 15px 0;
-  }
-  
+  scale: 0.75;
+  background-color: #1e1e1e; /* Slightly darker background for better contrast */
+  padding: 20px;
+  border-radius: 12px; /* Slightly larger border radius */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6); /* More prominent shadow */
+  color: #e0e0e0; /* Lighter text color for readability */
+  flex: 1;
+  margin-right: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.card:hover {
+  transform: scale(1.02); /* Slightly enlarge on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8); /* More prominent shadow on hover */
+}
+
+.disaster-ready {
+  font-size: 26px; /* Slightly larger font size */
+  font-weight: 800; /* Heavier font weight for emphasis */
+  color: #00bfff; /* Bright blue color for a striking effect */
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.card p {
+  margin: 12px 0;
+  line-height: 1.5; /* Increased line height for readability */
+}
+
+.card img {
+  max-width: 100%;
+  border-radius: 12px; /* Matching border radius */
+  margin: 15px 0;
+  border: 2px solid #333; /* Subtle border around the image */
+}

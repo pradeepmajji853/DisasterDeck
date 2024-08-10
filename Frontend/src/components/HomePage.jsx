@@ -1,47 +1,56 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Homepage.css';
-
+import Weather from './Weather.jsx';
+import IndiaMap from './IndiaMap.jsx';
+import Alerts from './Alerts.jsx';
 const HomePage = () => {
+  const [latitude, setLatitude] = useState(null);
+  const [longitude, setLongitude] = useState(null);
+  const [city, setCity] = useState('Hyderabad'); 
+  const [locationError, setLocationError] = useState(null);
+
   useEffect(() => {
     const getLocation = () => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           async (position) => {
             const { latitude, longitude } = position.coords;
+            setLatitude(latitude);
+            setLongitude(longitude);
             console.log('Latitude:', latitude);
             console.log('Longitude:', longitude);
 
             try {
-              const apiKey = 'YOUR_GOOGLE_MAPS_API_KEY';
               const response = await axios.get(
-                `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${apiKey}`
+                `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`
               );
 
-              // Print the entire response for debugging
               console.log('API Response:', response.data);
 
-              const results = response.data.results;
-              if (results.length > 0) {
-                const addressComponents = results[0].address_components;
-                console.log('Address Components:', addressComponents);
-
-                // Find the city in address components
-                const city = addressComponents.find(component => component.types.includes('locality'));
-                console.log('City:', city ? city.long_name : 'City not found');
+              const address = response.data.address;
+              const fetchedCity = address.city || address.town || address.village;
+              if (fetchedCity) {
+                setCity(fetchedCity);
+                console.log('City:', fetchedCity);
               } else {
-                console.log('No results found');
+                setCity('Hyderabad');  // Fallback to Hyderabad if city not found
               }
             } catch (error) {
               console.error('Error fetching city:', error);
+              setCity('Hyderabad');  // Fallback to Hyderabad on error
             }
           },
           (error) => {
             console.error('Error getting location:', error.message);
+            setLocationError('Unable to retrieve location. Please allow location access.');
+            setCity('Hyderabad');  // Fallback to Hyderabad on geolocation error
           }
         );
       } else {
         console.error('Geolocation is not supported by this browser.');
+        setLocationError('Geolocation is not supported by this browser.');
+        setCity('Hyderabad');  // Fallback to Hyderabad if geolocation is not supported
       }
     };
 
@@ -56,30 +65,13 @@ const HomePage = () => {
       </div>
       <div className="content">
         <div className="map-container">
-          <img src="path_to_your_map_image" alt="Map" className="map-image" />
+          <IndiaMap latitude={latitude} longitude={longitude}/>
         </div>
         <div className="alert-list">
-          <div className="alert-item">Lightning - 14 Mandals</div>
-          <div className="alert-item">Lightning - PADMANABHAM, JAMI, KOMARADA mandals</div>
+          <Alerts/>
         </div>
         <div className="weather-card">
-          <div className="weather-header">
-            <h2>Hyderabad</h2>
-            <p>Partly Cloudy</p>
-            <h3>31.6°C</h3>
-          </div>
-          <div className="weather-forecast">
-            <h4>Hourly Forecast</h4>
-            <p>5:00 PM - 29.1°C</p>
-            <p>6:00 PM - 27.4°C</p>
-            <p>7:00 PM - 26.5°C</p>
-          </div>
-          <div className="daily-forecast">
-            <h4>Daily Forecast</h4>
-            <p>Today - 32°C High / 23°C Low</p>
-            <p>Sunday - 32°C High / 24°C Low</p>
-            <p>Monday - 33°C High / 23°C Low</p>
-          </div>
+          <Weather city={city} />
         </div>
       </div>
     </div>

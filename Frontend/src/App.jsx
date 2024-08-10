@@ -4,6 +4,8 @@ import Layout from "./Layouts/Layout.jsx";
 import Layout2 from './Layouts/Layout2.jsx';
 import HomePage from './components/HomePage.jsx';
 import Resources from "./components/Resources.jsx"
+import PreparednessChecklist from './components/PreparednessChecklist.jsx';
+import CommunityForum from './components/CommunityForum.jsx';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Register from './components/Register.jsx';
 import Login from "./components/Login.jsx"
@@ -50,11 +52,31 @@ function App() {
         }
         />
          <Route
-        path="/Resouces"
+        path="/Resources"
         element={
           <Layout2>
             <div>
             <Resources/>
+            </div>
+          </Layout2>
+        }
+        />
+         <Route
+        path="/community-forum"
+        element={
+          <Layout2>
+            <div>
+              <CommunityForum/>
+            </div>
+          </Layout2>
+        }
+        />
+         <Route
+        path="/preparedness-checklist"
+        element={
+          <Layout2>
+            <div>
+              <PreparednessChecklist/>
             </div>
           </Layout2>
         }

@@ -1,0 +1,42 @@
+.blogs{
+    
+    justify-content: space-between; 
+    gap: 20px; 
+    padding: 20px;
+    background-image: url('C:\Users\DELL\d3\DisasterDeck\Frontend\src\assets\n.jpg')
+
+  }
+  
+  .blogs .but {
+    flex: 1; /* Ensures all cards are the same width */
+    background-color: #a7bbcf; /* Background color for the card */
+    border: 1px solid #ddd; /* Border around each card */
+    border-radius: 8px; /* Rounded corners */
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow */
+    text-align: center;
+    color:black;
+    font-weight: bold;
+    width:40rem;
+    cursor: pointer;
+    margin-bottom: 25px;
+    margin-left: 20rem;
+    height:8rem;
+  }
+  
+  .blogs .but:hover {
+    background-color: #344c66; /* Background color on hover */
+    color: white; /* Text color on hover */
+    font-weight: bold;
+    transform: scale(1.05); /* Slightly enlarges the button on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+  }
+  .blogs h1{
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    margin-left: 35rem;
+    
+
+  }

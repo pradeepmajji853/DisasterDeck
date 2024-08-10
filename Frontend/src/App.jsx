@@ -3,6 +3,7 @@ import Card from "./components/Card.jsx"
 import Layout from "./Layouts/Layout.jsx";
 import Layout2 from './Layouts/Layout2.jsx';
 import HomePage from './components/HomePage.jsx';
+import Resources from "./components/Resources.jsx"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Register from './components/Register.jsx';
 import Login from "./components/Login.jsx"
@@ -48,6 +49,19 @@ function App() {
           </Layout2>
         }
         />
+         <Route
+        path="/Resouces"
+        element={
+          <Layout2>
+            <div>
+            <Resources/>
+            </div>
+          </Layout2>
+        }
+        />
+        
+        
+
         
       </Routes>
     </Router>

@@ -9,6 +9,7 @@ import CommunityForum from './components/CommunityForum.jsx';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Register from './components/Register.jsx';
 import Login from "./components/Login.jsx"
+import RecentDisasters from './components/RecentDisasters.jsx';
 import './App.css'
 
 function App() {
@@ -46,7 +47,9 @@ function App() {
         element={
           <Layout2>
             <div>
+            <RecentDisasters/>
             <HomePage/>
+            
             </div>
           </Layout2>
         }

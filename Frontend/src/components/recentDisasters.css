@@ -1,0 +1,59 @@
+.recent-disasters {
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+}
+
+.title {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  background-color: #0056a3;
+  color: white;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.disaster-list-wrapper {
+  overflow: hidden; 
+  background-color: white;
+  border: 1px solid #ccc;
+}
+
+.disaster-list {
+  display: flex;
+  padding: 10px;
+  white-space: nowrap;
+  animation: scrollLeft 30s linear infinite;
+}
+
+.disaster-item {
+  display: inline-block;
+  margin-right: 20px;
+  font-size: 14px;
+  padding: 5px;
+}
+
+.category {
+  font-weight: bold;
+  color: #ff6600;
+}
+
+.location {
+  margin-left: 5px;
+}
+
+.date {
+  margin-left: 5px;
+  color: #555;
+}
+
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

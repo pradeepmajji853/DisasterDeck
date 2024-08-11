@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './EmergencyContact.css';
+import axios from 'axios'; // Import axios for HTTP requests
 
 const EmergencyContact = () => {
   const [formData, setFormData] = useState({
@@ -7,6 +8,10 @@ const EmergencyContact = () => {
     email: '',
     message: '',
   });
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -16,11 +21,30 @@ const EmergencyContact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic
-    alert('Message sent!');
+  
+    try {
+      const response = await fetch('http://localhost:3000/api/emergency-contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+  
+      const data = await response.json();
+      alert(data.message);
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Failed to send the message');
+    }
   };
+  
 
   return (
     <div className='emergency-contact'>
@@ -35,6 +59,7 @@ const EmergencyContact = () => {
             value={formData.name}
             onChange={handleChange}
             required
+            disabled={loading}
           />
         </div>
         <div className='form-group'>
@@ -46,6 +71,7 @@ const EmergencyContact = () => {
             value={formData.email}
             onChange={handleChange}
             required
+            disabled={loading}
           />
         </div>
         <div className='form-group'>
@@ -56,10 +82,15 @@ const EmergencyContact = () => {
             value={formData.message}
             onChange={handleChange}
             required
+            disabled={loading}
           ></textarea>
         </div>
-        <button type='submit'>Send Message</button>
+        <button type='submit' disabled={loading}>
+          {loading ? 'Sending...' : 'Send Message'}
+        </button>
       </form>
+      {error && <p className='error-message'>{error}</p>}
+      {success && <p className='success-message'>{success}</p>}
       <div className='contact-info'>
         <h3>Emergency Contact Information</h3>
         <p>For immediate assistance, please call:</p>

@@ -6,7 +6,7 @@ const PreparednessChecklist = () => {
     Earthquake: ['Emergency Contact number', 'Evacuation Routes'],
     Flood: ['Sandbags', 'Medication Supply'],
     Fire: ['Smoke Alarms', 'Fire Extinguisher'],
-    Cyclone: ['Property protection', 'Electricity Shut-Off'],
+    Cyclone: ['Property protection', 'Electricity Shut-Off'], // Fixed extra comma
     Volcano: ['Disaster kit', 'Mental Health Preparedness'],
     Human_Disasters: ['Plan for Pets', 'Emergency Contact number']
   };
@@ -63,7 +63,7 @@ const PreparednessChecklist = () => {
           <button onClick={handleSubmit} className="submit-button">Submit</button>
         </div>
       ) : (
-        <div className="Finalresult">
+        <div className='Finalresult'>
           <div className="results-container">
             <h1 className="heading">Preparedness Results</h1>
             {Object.keys(disasters).map((disaster) => (
@@ -84,3 +84,4 @@ const PreparednessChecklist = () => {
 };
 
 export default PreparednessChecklist;
+

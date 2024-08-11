@@ -1,38 +1,34 @@
 .Emergency {
-    display: flex;
-    flex-direction: column; /* Stack items vertically */
-    gap: 1em; /* Add space between the heading and the map/contact sections */
-    padding: 1em;
-  }
-  
-  .shelter {
-    display: flex;
-    flex-direction: column; /* Stack heading and map vertically */
-    gap: 1em; /* Space between heading and map */
-  }
-  
-  .shelter h1 {
-    margin: 0;
-    font-size: 1.5em;
-    text-align: center;
-  }
-  
-  .map-container {
-    display: flex;
-    flex: 1; /* Make the map container take available space */
-  }
-  
-  .contact {
-    flex: 1; /* Make the contact section take available space */
-  }
-  
-  @media (min-width: 768px) {
-    .Emergency {
-      flex-direction: row; /* Arrange items horizontally on larger screens */
-    }
-  
-    .shelter, .contact {
-      flex: 1; /* Each section will take equal space in row layout */
-    }
-  }
-  
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+  background-color: #f4f4f4;
+}
+
+.shelter {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.map-container {
+  height: 100%;
+  max-width: 100%;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.contact {
+  flex: 1;
+  margin-left: 20px;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.shelter h1 {
+  margin-bottom: 20px;
+}
+

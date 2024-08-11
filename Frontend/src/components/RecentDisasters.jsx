@@ -38,7 +38,7 @@ const RecentDisasters = () => {
 
   return (
     <div className="recent-disasters">
-      <h3 className="title">Recent Disasters</h3>
+      <h3 className="title">Recent Disasters World Wide</h3>
       <div className="disaster-list">
         {disasters.length > 0 ? (
           disasters.map((disaster) => (

@@ -1,46 +1,47 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import './Alerts.css';
 
 const Alerts = () => {
   const [alerts, setAlerts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchAlerts = async () => {
-      try {
-        console.log("Fetching disaster alerts...");
-        const response = await axios.get('http://localhost:3000/api/disaster-alerts');
-        console.log("Alerts fetched:", response.data);
-        setAlerts(response.data);
-      } catch (err) {
-        console.error("Error fetching alerts:", err);
-        setError('Failed to fetch disaster alerts');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchAlerts();
+    // Fetch disaster alerts from the backend
+    fetch('http://localhost:3000/api/disaster-alerts')
+      .then(response => response.json())
+      .then(data => setAlerts(data))
+      .catch(error => console.error('Error fetching disaster alerts:', error));
   }, []);
 
+  // Function to determine the CSS class based on the alert type
+  const getAlertClass = (type) => {
+    switch (type.toLowerCase()) {
+      case 'lightning':
+        return 'alert-item-lightning';
+      case 'light rain':
+        return 'alert-item-lightrain';
+      case 'gusty winds':
+        return 'alert-item-gustywinds';
+      case 'thunderstorm':
+        return 'alert-item-thunderstorm';
+      case 'heavy rain':
+        return 'alert-item-heavyrain';
+      default:
+        return 'alert-item-default';
+    }
+  };
+
   return (
-    <div className="container">
+    <div className="alerts-container">
       <h1>Disaster Alerts</h1>
-      {loading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
-      <div className="alerts">
-        {alerts.length > 0 ? (
-          alerts.map((alert, index) => (
-            <div key={index} className="alert-item">
-              {alert}
-            </div>
-          ))
-        ) : (
-          !loading && <p>No alerts available</p>
-        )}
-      </div>
+      <ul>
+        {alerts.map((alert, index) => (
+          <li key={index} className={getAlertClass(alert.alert)}>
+            <strong>{alert.alert}</strong> - {alert.location}
+            <br />
+            <small>Latitude: {alert.latitude}, Longitude: {alert.longitude}</small>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

@@ -116,21 +116,96 @@ app.get('/users/:userId', (req, res) => {
 });
 
 app.get('/api/disaster-alerts', async (req, res) => {
-  try {
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-    await page.goto('https://sachet.ndma.gov.in/');
-    
-    const alerts = await page.evaluate(() => {
-      const headings = Array.from(document.querySelectorAll('#style-1'));
-      return headings.map(heading => heading.textContent.trim());
-    });
-    
-    await browser.close();
-    res.json(alerts);
-  } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch disaster alerts' });
+  // Create an array of disaster alerts with random data
+  const disasterAlerts = [
+    {
+      alert: "Flood in Assam",
+      location: "Assam",
+      latitude: 26.2006,
+      longitude: 92.9376
+    },
+    {
+      alert: "Cyclone in Odisha",
+      location: "Odisha",
+      latitude: 20.9517,
+      longitude: 85.0985
+    },
+    {
+      alert: "Earthquake in Himachal Pradesh",
+      location: "Himachal Pradesh",
+      latitude: 31.1048,
+      longitude: 77.1734
+    },
+    {
+      alert: "Landslide in Uttarakhand",
+      location: "Uttarakhand",
+      latitude: 30.0668,
+      longitude: 79.0193
+    },
+    {
+      alert: "Flood in Bihar",
+      location: "Bihar",
+      latitude: 25.0961,
+      longitude: 85.3131
+    },
+    {
+      alert: "Cyclone in West Bengal",
+      location: "West Bengal",
+      latitude: 22.9868,
+      longitude: 87.8550
+    },
+    {
+      alert: "Heatwave in Rajasthan",
+      location: "Rajasthan",
+      latitude: 27.0238,
+      longitude: 74.2179
+    },
+    {
+      alert: "Tsunami Warning in Tamil Nadu",
+      location: "Tamil Nadu",
+      latitude: 11.1271,
+      longitude: 78.6569
+    },
+    {
+      alert: "Drought in Maharashtra",
+      location: "Maharashtra",
+      latitude: 19.7515,
+      longitude: 75.7139
+    },
+    {
+      alert: "Wildfire in Madhya Pradesh",
+      location: "Madhya Pradesh",
+      latitude: 22.9734,
+      longitude: 78.6569
+    }
+  ];
+
+  // Send the disaster alerts as the response
+  res.json(disasterAlerts);
+});
+
+
+app.post('/api/emergency-contact', (req, res) => {
+  const { name, email, message } = req.body;
+
+  console.log('Received data:', { name, email, message }); // Add this line
+
+  if (!name || !email || !message) {
+    console.error("Validation error: Missing fields");
+    return res.status(400).send("All fields are required");
   }
+
+  const query = `INSERT INTO emergency_contacts (name, email, message) VALUES (?, ?, ?)`;
+
+  db.query(query, [name, email, message], (err, results) => {
+    if (err) {
+      console.error("Error inserting data into the database:", err);
+      return res.status(500).send("An error occurred while inserting data into the database");
+    }
+
+    console.log('Data inserted successfully');
+    res.json({ message: "Emergency contact message sent successfully!" });
+  });
 });
 
 

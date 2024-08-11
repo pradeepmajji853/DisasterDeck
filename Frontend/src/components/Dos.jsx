@@ -1,115 +1,103 @@
 import React, { useState } from 'react';
-import './Dos.css'; 
+import './Dos.css';
 
 const Dos = () => {
-  const [selectedTopic, setSelectedTopic] = useState(null);
+  const [selectedDisaster, setSelectedDisaster] = useState(null);
 
-  const topics = {
-    cyclone: {
+  const disasterData = {
+    earthquake: {
+      title: 'Earthquake',
       dos: [
-        'Stay indoors and away from windows.',
-        'Have an emergency kit ready.',
-        'Follow local weather updates.',
-        'Secure outdoor objects and windows.'
+        'Drop, Cover, and Hold On.',
+        'Stay indoors until the shaking stops.',
+        'Move away from buildings, streetlights, and utility wires.'
       ],
       donts: [
-        'Do not go outside during the cyclone.',
-        'Avoid using electrical appliances.',
-        'Do not drive unless absolutely necessary.',
-        'Avoid using candles or open flames.'
+        'Don’t run outside during the shaking.',
+        'Don’t use elevators.',
+        'Don’t stand under doorways.'
       ]
     },
-    floods: {
+    flood: {
+      title: 'Flood',
       dos: [
         'Move to higher ground immediately.',
-        'Avoid walking or driving through floodwaters.',
-        'Have an emergency kit with essentials.',
-        'Follow evacuation orders.'
+        'Turn off utilities at the main switches.',
+        'Boil water before drinking it.'
       ],
       donts: [
-        'Do not drive through flooded roads.',
-        'Avoid touching electrical equipment.',
-        'Do not drink or use floodwater.',
-        'Avoid walking in floodwater to prevent injury.'
+        'Don’t walk through flowing water.',
+        'Don’t drive through flooded areas.',
+        'Don’t touch electrical equipment if you are wet.'
       ]
     },
-    earthquake: {
-      dos: [
-        'Drop to your hands and knees.',
-        'Cover your head and neck.',
-        'Hold on until the shaking stops.',
-        'Stay indoors until it is safe.'
-      ],
-      donts: [
-        'Do not run outside during shaking.',
-        'Avoid using elevators.',
-        'Do not stand near windows or heavy objects.',
-        'Do not use matches or candles if you suspect a gas leak.'
-      ]
+    Volcano:{
+      title:'Volcano',
+      dos:['If authorities issue an evacuation order, follow it immediately to ensure your safety',
+        'Stay indoors',
+        'Use a mask'],
+        donts:['Don’t ignore warnings','Don’t use electrical appliances','Don’t drink contaminated water']
     },
-    volcanoes: {
+    cyclone: {
+      title: 'Cyclone',
       dos: [
-        'Follow evacuation orders promptly.',
-        'Protect yourself from ash fall.',
-        'Stay indoors with windows and doors closed.',
-        'Keep emergency supplies ready.'
+        'Secure your home and outdoor objects.',
+        'Stay indoors and keep windows closed.',
+        'Have an emergency kit ready.'
       ],
       donts: [
-        'Do not go outside unless necessary.',
-        'Avoid driving through volcanic ash.',
-        'Do not use masks not intended for ash.',
-        'Avoid staying in low-lying areas prone to lava flows.'
+        'Don’t go outside during the storm.',
+        'Don’t ignore official warnings.',
+        'Don’t use candles during power outages.'
       ]
     }
   };
 
-  const handleTopicClick = (topic) => {
-    if (selectedTopic === topic) {
-      setSelectedTopic(null); // Hide the info if the same topic is clicked again
-    } else {
-      setSelectedTopic(topic); // Show the info for the new topic
-    }
+  const handleClick = (disaster) => {
+    setSelectedDisaster(disaster);
   };
 
   return (
-    <div>
-   <div style={{backgroundColor:'black'}} className="header"   ><h1 style={{marginLeft:"25rem", paddingTop:'50px', backgroundColor:'black'}}>We must be aware of Dos and Don'ts</h1></div>
-    <div className="disaster-info">
-      <div className="topics">
-        {Object.keys(topics).map((topic) => (
+    <div className="guidelines-container">
+      <h1>Disaster Guidelines</h1>
+      <div className="disaster-buttons">
+        {Object.keys(disasterData).map((key) => (
           <button
-            key={topic}
-            onClick={() => handleTopicClick(topic)}
-            className="topic-button"
+            key={key}
+            onClick={() => handleClick(disasterData[key])}
+            className="disaster-button"
           >
-            {topic.charAt(0).toUpperCase() + topic.slice(1)}
+            {disasterData[key].title}
           </button>
         ))}
       </div>
-      {selectedTopic && (
-        <div className="info-box">
-          <h2>Dos and Don'ts for {selectedTopic.charAt(0).toUpperCase() + selectedTopic.slice(1)}</h2>
-          <div className="dos-donts">
-            <div className="dos">
-              <h3>Dos</h3>
-              <ul>
-                {topics[selectedTopic].dos.map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
-            </div>
-            <div className="donts">
-              <h3>Don'ts</h3>
-              <ul>
-                {topics[selectedTopic].donts.map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
+
+      {selectedDisaster && (
+        <div className="guidelines-content">
+          <h2>{selectedDisaster.title} - Dos</h2>
+          <ul className="guidelines-list">
+            {selectedDisaster.dos.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+
+          <h2>{selectedDisaster.title} - Don'ts</h2>
+          <ul className="guidelines-list">
+            {selectedDisaster.donts.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
         </div>
       )}
-    </div></div>
+       <div className="disaster-info">
+        <h3>Why is it important to know Dos and Don'ts?</h3>
+        <p>
+          Understanding the correct actions to take during a disaster can significantly increase your chances of staying safe. 
+          By knowing what to do and what to avoid, you can minimize risks to yourself and others, and respond more effectively 
+          in emergency situations.
+        </p>
+      </div>
+    </div>
   );
 };
 

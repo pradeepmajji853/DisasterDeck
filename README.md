@@ -1,5 +1,4 @@
 # DisasterDeck
-## Disaster Deck
 
 ## Overview
 Disaster Deck is a comprehensive platform designed to empower users with the tools and resources needed to stay prepared and safe during disasters. The platform integrates real-time alerts, educational content, readiness checklists, and emergency resources, all tailored to the user's location and needs.
@@ -84,4 +83,4 @@ This project is licensed under the MIT License. See the LICENSE file for details
 ## Contact
 For any inquiries, please contact us at [pradeepmajji853@gmail.com].
 
-
+Pictures at https://drive.google.com/drive/folders/1ji1gEz90uF35tmZ8izz_Z8fAKaTCWg7s?usp=sharing

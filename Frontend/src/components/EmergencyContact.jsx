@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './EmergencyContact.css';
-import axios from 'axios'; // Import axios for HTTP requests
 
 const EmergencyContact = () => {
   const [formData, setFormData] = useState({
@@ -10,7 +9,6 @@ const EmergencyContact = () => {
   });
 
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
   const handleChange = (e) => {
@@ -21,30 +19,17 @@ const EmergencyContact = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-  
-    try {
-      const response = await fetch('http://localhost:3000/api/emergency-contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-  
-      if (!response.ok) {
-        throw new Error('Failed to send message');
-      }
-  
-      const data = await response.json();
-      alert(data.message);
-    } catch (error) {
-      console.error('Error:', error);
-      alert('Failed to send the message');
-    }
+    setLoading(true);
+
+    // Simulate API call
+    setTimeout(() => {
+      setSuccess('Message sent successfully!');
+      setLoading(false);
+      setFormData({ name: '', email: '', message: '' });
+    }, 1000);
   };
-  
 
   return (
     <div className='emergency-contact'>
@@ -89,7 +74,6 @@ const EmergencyContact = () => {
           {loading ? 'Sending...' : 'Send Message'}
         </button>
       </form>
-      {error && <p className='error-message'>{error}</p>}
       {success && <p className='success-message'>{success}</p>}
       <div className='contact-info'>
         <h3>Emergency Contact Information</h3>

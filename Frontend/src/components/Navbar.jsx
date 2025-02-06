@@ -1,55 +1,60 @@
 import "./Navbar.css";
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useAuth, useClerk } from "@clerk/clerk-react";
 
 export default function Navbar() {
+  const { isSignedIn } = useAuth();
+  const { signOut } = useClerk();
+  const navigate = useNavigate();
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate('/sign-in');
+  };
 
   return (
-    <div className="Navbar">
-      <h1>Disaster Deck</h1>
-      <ul>
-        <li>
-          <NavLink 
-            to="/Home" 
-            className={({ isActive }) => (isActive ? "active" : "")}
-          >
-            Home
-          </NavLink>
-        </li>
-        <li>
-          <NavLink 
-            to="/Emergency" 
-            className={({ isActive }) => (isActive ? "active" : "")}
-          >
-            Emergency
-          </NavLink>
-        </li>
-        <li>
-          <NavLink 
-            to="/KnowledgeHub" 
-            className={({ isActive }) => (isActive ? "active" : "")}
-          >
-            KnowledgeHub
-          </NavLink>
-        </li>
-        
-        <li>
-          <NavLink 
-            to="/preparedness-checklist" 
-            className={({ isActive }) => (isActive ? "active" : "")}
-          >
-            Preparedness Checklist
-          </NavLink>
-        </li>
-        <li>
-          <NavLink 
-            to="/Dos" 
-            className={({ isActive }) => (isActive ? "active" : "")}
-          >
-            Do's and Dont's
-          </NavLink>
-        </li>
-      </ul>
-    </div>
+    <nav className="Navbar">
+      <div className="nav-container">
+        <h1>Disaster Deck</h1>
+        <ul>
+          <li>
+            <NavLink 
+              to="/" 
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              <i className="fas fa-home"></i> Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink 
+              to="/about" 
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              <i className="fas fa-info-circle"></i> About
+            </NavLink>
+          </li>
+          <li>
+            <NavLink 
+              to="/Dos" 
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              <i className="fas fa-list-ul"></i> Do's and Don'ts
+            </NavLink>
+          </li>
+          {isSignedIn && (
+            <li>
+              <button 
+                onClick={handleSignOut}
+                className="logout-button"
+              >
+                <i className="fas fa-sign-out-alt"></i>
+                Sign Out
+              </button>
+            </li>
+          )}
+        </ul>
+      </div>
+    </nav>
   );
 }
 

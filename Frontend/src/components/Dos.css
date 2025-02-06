@@ -1,78 +1,151 @@
-.guidelines-container {
-  max-width: 800px;
+.dos-container {
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
-  font-family: Arial, sans-serif;
+  padding: 2rem;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+.dos-container h1 {
+  color: #1e3c72;
   text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
 }
 
-.guidelines-container h1 {
-  margin-bottom: 20px;
-  color: white;
+.disaster-selector {
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
-.disaster-buttons {
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 20px;
-}
-
-.disaster-button {
-  padding: 40px 40px;
-  border: 1px solid #007bff;
-  background-color: #007bff;
-  color: white;
-  font-size: 1rem;
-  border-radius: 6px;
+.disaster-selector select {
+  padding: 0.8rem 2rem;
+  font-size: 1.1rem;
+  border: 2px solid #1e3c72;
+  border-radius: 8px;
+  background-color: white;
+  color: #1e3c72;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top:5rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.disaster-selector select:hover {
+  border-color: #2a5298;
+}
+
+.guidelines-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
   margin-bottom: 3rem;
 }
 
-.disaster-button:hover {
-  background-color: #0056b3;
+.dos-section, .donts-section {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.guidelines-content {
-  text-align: left;
-  margin-top: 20px;
-  background-color: #f9f9f9;
-  padding: 20px;
+.dos-section h2, .donts-section h2 {
+  color: #1e3c72;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #e3f2fd;
+  text-align: center;
+}
+
+.dos-section ul, .donts-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.dos-section li, .donts-section li {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  padding: 0.8rem;
+  background: #f8f9fa;
+  border-radius: 6px;
+  transition: transform 0.3s ease;
+}
+
+.dos-section li:hover, .donts-section li:hover {
+  transform: translateX(5px);
+}
+
+.checkmark {
+  color: #4caf50;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.cross {
+  color: #f44336;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.emergency-contacts {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.emergency-contacts h2 {
+  color: #1e3c72;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.contact-item {
+  text-align: center;
+  padding: 1.5rem;
+  background: #f8f9fa;
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
 }
 
-.guidelines-content h2 {
-  color: #333;
-  margin-bottom: 10px;
+.contact-item:hover {
+  transform: translateY(-5px);
 }
 
-.guidelines-list {
-  list-style-type: disc;
-  padding-left: 20px;
-  color: #555;
+.contact-item h3 {
+  color: #1e3c72;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
 }
 
-.guidelines-list li {
-  margin-bottom: 5px;
+.contact-item p {
+  color: #f44336;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
-.disaster-info {
-  background-color: #f9f9f9;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  margin-top: 30px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+@media (max-width: 768px) {
+  .dos-container {
+    padding: 1rem;
+  }
+
+  .guidelines-container {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-.disaster-info h3 {
-  margin-bottom: 10px;
-  color: #333;
-}
-
-.disaster-info p {
-  color: #666;
-  line-height: 1.6;
+@media (max-width: 480px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
 }

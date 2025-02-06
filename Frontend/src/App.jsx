@@ -3,9 +3,6 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import Layout from "./Layouts/Layout.jsx";
 import Layout2 from './Layouts/Layout2.jsx';
 import HomePage from './components/HomePage.jsx';
-import KnowledgeHub from "./components/KnowledgeHub.jsx"
-import PreparednessChecklist from './components/PreparednessChecklist.jsx';
-import Emergency from './components/Emergency.jsx';
 import RecentDisasters from './components/RecentDisasters.jsx';
 import Dos from './components/Dos.jsx';
 import About from "./components/About.jsx";
@@ -67,27 +64,7 @@ function App() {
             </Layout2>
           </ProtectedRoute>
         } />
-        <Route path="/Emergency" element={
-          <ProtectedRoute>
-            <Layout2>
-              <Emergency/>
-            </Layout2>
-          </ProtectedRoute>
-        } />
-        <Route path="/KnowledgeHub" element={
-          <ProtectedRoute>
-            <Layout2>
-              <KnowledgeHub/>
-            </Layout2>
-          </ProtectedRoute>
-        } />
-        <Route path="/preparedness-checklist" element={
-          <ProtectedRoute>
-            <Layout2>
-              <PreparednessChecklist/>
-            </Layout2>
-          </ProtectedRoute>
-        } />
+       
         <Route path="/Dos" element={
           <ProtectedRoute>
             <Layout2>
